@@ -58,6 +58,10 @@ if(ENABLE_SANITIZER)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O1 -fno-omit-frame-pointer -fsanitize=${ENABLE_SANITIZER}")
 endif()
 
+if (EMSCRIPTEN)
+  string(REPLACE "-fstack-protector-strong" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+endif()
+
 #set(UNCRUSTIFY_SEPARATE_TESTS "True")
 
 include_directories(
